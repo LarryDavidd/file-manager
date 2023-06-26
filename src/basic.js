@@ -61,16 +61,6 @@ export const cp = async (pathSourceDir, pathNewDir, curDir) => {
   }
 };
 
-export const rm = async (sourcePath, curDir) => {
-  try {
-    fs.promises.rm(path.resolve(curDir, sourcePath));
-	} catch (err) {
-    console.log('Operation failed');
-    return false;
-	}
-  return true;
-};
-
 export const mv = async (pathSourceDir, pathNewDir, curDir) => {
   await cp(pathSourceDir, pathNewDir, curDir).then(
     rm(pathSourceDir, curDir)

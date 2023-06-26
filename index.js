@@ -4,9 +4,12 @@ import path from "path";
 import { error } from "console";
 
 import { up, cd, ls } from './src/navigation.js';
-import { cat, add, rn, cp, rm, mv} from './src/basic.js'
+import { cat, add, rn, cp, mv} from './src/basic.js'
+import { rm } from './src/remove.js'
 import { operatingSystemInfo } from './src/os.js';
 import { hash } from './src/hash.js'
+import { compress } from "./src/compress.js";
+import { decompress } from './src/decompress.js'
 
 const goodbyeMess = (userName) => {
   console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
@@ -77,10 +80,15 @@ rl.on('line', async (line) => {
       case 'hash':
         await hash(params[0]);
         break;
+      case 'compress':
+        await compress(params[0], params[1], curDir);
+        break;
+      case 'decompress':
+        await decompress(params[0], params[1], curDir);
+        break;
       default:
         console.log('Invalid input');
         break;
-
     }
   } catch(e) {
     throw new Error(e);
