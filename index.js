@@ -6,6 +6,7 @@ import { error } from "console";
 import { up, cd, ls } from './src/navigation.js';
 import { cat, add, rn, cp, rm, mv} from './src/basic.js'
 import { operatingSystemInfo } from './src/os.js';
+import { hash } from './src/hash.js'
 
 const goodbyeMess = (userName) => {
   console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
@@ -72,6 +73,9 @@ rl.on('line', async (line) => {
         break;
       case 'os':
         await operatingSystemInfo(params[0]);
+        break;
+      case 'hash':
+        await hash(params[0]);
         break;
       default:
         console.log('Invalid input');
