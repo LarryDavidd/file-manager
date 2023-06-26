@@ -4,6 +4,7 @@ import path from "path";
 import { error } from "console";
 
 import { up, cd, ls } from './src/navigation.js';
+import { cat, add, rn, cp, rm, mv} from './src/basic.js'
 
 const goodbyeMess = (userName) => {
   console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
@@ -47,11 +48,27 @@ rl.on('line', async (line) => {
         await ls(curDir);
         break;
       case 'cd':
-        curDir = await cd(args[0], curDir);
+        curDir = await cd(params[0], curDir);
 		    console.log(`You are currently in ${curDir}`);
-
         break;
-      
+      case 'cat':
+        await cat(params[0], curDir);
+        break;
+      case 'add':
+        await add(params[0], curDir);
+        break;
+      case 'rn':
+        await rn(params[0], params[1], curDir);
+        break;
+      case 'cp':
+        await cp(params[0], params[1], curDir);
+        break;
+      case 'mv':
+        await mv(params[0], params[1], curDir);
+        break;
+      case 'rm':
+        await rm(params[0], curDir);
+        break;
       default:
         console.log('Invalid input');
         break;
